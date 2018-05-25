@@ -2,6 +2,8 @@ from pyspark import SparkContext
 
 from pyspark.mllib.regression import LabeledPoint
 
+from app.featCluster import generateFeatureClusters
+
 def cleanSample(sample):
     return LabeledPoint(getLabelID(sample[1]), sample[2:]) 
 
@@ -32,10 +34,11 @@ def loadRosmapData(context, fileName):
     allSamples = headerlessRawData.map(lambda line: line.split(','))
 
     # Apply filter to remove samples with diagnosis of NA, 2,3,6
-    trainingSamples = allSamples.filter(lambda sample: rosmapFilter(sample, 'NA', '2', '3', '6'))
+    sampleSubset = allSamples.filter(lambda sample: rosmapFilter(sample, 'NA', '2', '3', '6'))
 
     # Transform training samples to trainable data format
-    # Currently they are all strings
-    trainingSamples = trainingSamples.map(cleanSample)
-
+    # trainingSamples will now have properly Labeled Points
+    trainingSamples = sampleSubset.map(cleanSample)
+    
     return trainingSamples
+
