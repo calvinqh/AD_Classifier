@@ -3,9 +3,6 @@ from pyspark import SparkContext
 from pyspark.mllib.regression import LabeledPoint
 
 def cleanSample(sample):
-    #print(type(sample[1]))
-    #Returns a labeled point with label and data
-    #Assumes label is the first column and data entries are the rest.
     return LabeledPoint(getLabelID(sample[1]), sample[2:]) 
 
 def rosmapFilter(sample, *args):
