@@ -1,12 +1,14 @@
+import sys
+
 from pyspark import SparkContext
 
 from pyspark.mllib.classification import SVMWithSGD, SVMModel
 
-from .utils import loadRosmapData
+from app.utils import loadRosmapData
 
 if __name__ == "__main__":
 
-    if(sys.argc < 2):
+    if(len(sys.argv) < 2):
         print("Usage: python src.run <output model filename>")
 
     print("Executing main.")
@@ -27,7 +29,7 @@ if __name__ == "__main__":
 
     # Save and load the model
     outputLocation = "./models/"
-    outputModel = sys.arg[2] 
+    outputModel = sys.argv[1] 
     outputFile = outputLocation+outputModel
     model.save(sc, outputFile)
 
