@@ -1,2 +1,4 @@
 data/*
 *__pycache__*
+spark_warehouse/*
+models/*
