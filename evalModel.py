@@ -2,7 +2,7 @@ import sys
 from pyspark import SparkContext
 from pyspark.mllib.classification import SVMModel
 
-from app.utils import loadRosmapData
+from app.dataLoader import loadRosmapData
 
 if __name__ == "__main__":
 
