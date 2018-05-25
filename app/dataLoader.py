@@ -21,10 +21,12 @@ def loadRosmapData(context, fileName):
     rawData = context.textFile(fileName)
     
     # Retrieve header of file
-    header = rawData.first()
+    headerLine = rawData.first()
+    header = headerLine.split(',')
+    header = [elem for elem in header if elem != 'PATIENT_ID']
 
     # Remove the header from file
-    headerlessRawData = rawData.filter(lambda line: line != header)
+    headerlessRawData = rawData.filter(lambda line: line != headerLine)
     
     # Parse the line to remove the commas
     allSamples = headerlessRawData.map(lambda line: line.split(','))
