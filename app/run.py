@@ -5,6 +5,10 @@ from pyspark.mllib.classification import SVMWithSGD, SVMModel
 from .utils import loadRosmapData
 
 if __name__ == "__main__":
+
+    if(sys.argc < 2):
+        print("Usage: python src.run <output model filename>")
+
     print("Executing main.")
 
     sc = SparkContext(appName="AlzheimersDiseaseClassifier")
@@ -23,7 +27,7 @@ if __name__ == "__main__":
 
     # Save and load the model
     outputLocation = "./models/"
-    outputModel = "svmADClassifier.model"
+    outputModel = sys.arg[2] 
     outputFile = outputLocation+outputModel
     model.save(sc, outputFile)
 
