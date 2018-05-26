@@ -22,7 +22,7 @@ This file contains the diagnosis id and the description. The diagnosis id was us
 This file contains addition information about the patient. The patient id, age, gender and education. These additional features can be used to add additional features to our training data. This additional file, may or may not be introduced in my project.
 
 ## Project Workflow
-### Part 1: Feature Engineering
+### Part 1: Feature Engineering (Incomplete)
 In the ROSMAP_RNASeq_entrez file, the samples are described by large number of features and it also contains samples with MCI (mild cognitive impairment). First off having such a high dimension for our dataset can be troubling because it will take our learning algorithm longer to train. In order to address the problems of high dimensionality we will perform some feature engineering in order to reduce its affer. 
 
 Second, since this model will only be classifying patients in the two classes NCI and AD, we will have to remove samples with MCI and other dementia.
@@ -31,7 +31,7 @@ The way I will approach the first problem is to use Map Reduce to first cluster 
 
 
 ### Part 2: Machine Learning
-After I have performed feature engineering, in order to reduce the dimension of our samples, it is now time to train our model with our data. The classification algorithm I will be using is **insert name here**.  The framework that I will use to accomplish this is with Hadoop Spark.  Following that I will be carrying out 3 fold cross validation to display the results. The metric that i will be using is accuracy, to measure the performance of the classifier. 
+After I have performed feature engineering, in order to reduce the dimension of our samples, it is now time to train our model with our data. The classification algorithm I will be using is SVM.  The framework that I will use to accomplish this is with Hadoop Spark.  Following that I will be carrying out 3 fold cross validation to display the results. The metric that i will be using is accuracy, AUPRC, and AUROC to evaluate the performance of the classifier. 
 
 ## Dependencies
 
@@ -39,15 +39,19 @@ After I have performed feature engineering, in order to reduce the dimension of 
 	 - ROSMAP_RNASeq_entrez.csv
 	 - ROSMAP_RNASeq_disease_label.csv
 	 - patients.csv
- - Hadoop Spark 
- - Hadoop Map Reduce 
+ - pyspark
  - Python 3
+ - NumpPy
+ - Pandas
+ - Make (optional)
+ - virtualenvwrapper
 
 ## To run
 ```
 mkvirtualenv ad_class
+workon ad_class
 pip install -r requirements.txt
-pythom -m <file>
+python trainModel <output: directoryNameForModel>
 ```
 
 
